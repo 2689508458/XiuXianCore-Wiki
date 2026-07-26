@@ -1,0 +1,6 @@
+{
+  "name": "xiuxiancore-wiki",
+  "private": true,
+  "scripts": { "build": "vitepress build ." },
+  "devDependencies": { "vitepress": "^1.6.3" }
+}
