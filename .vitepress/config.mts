@@ -6,6 +6,7 @@ const manualSidebar: SidebarItem[] = [
     text: '入门',
     collapsed: false,
     items: [
+      { text: '全版本更新日志', link: '/更新日志' },
       { text: '安装与前置', link: '/安装与前置' },
       { text: '配置总览', link: '/配置总览' },
       { text: 'v1.4.x 更新指南', link: '/v1.4.0更新指南' }
@@ -53,6 +54,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
+      { text: '更新日志', link: '/更新日志' },
       { text: '快速开始', link: '/安装与前置' },
       { text: 'v1.4.x 新功能', link: '/v1.4.0更新指南' },
       { text: '插件开发/定制', link: '/关于作者与定制' }

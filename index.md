@@ -6,6 +6,9 @@ hero:
   tagline: 境界 · 突破 · 渡劫 · 打坐 · 灵脉 · 境界排行 | Paper/Purpur 1.21.4
   actions:
     - theme: brand
+      text: 全版本更新
+      link: /更新日志
+    - theme: alt
       text: 快速开始
       link: /安装与前置
     - theme: alt
