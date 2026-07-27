@@ -18,6 +18,7 @@
 | `xx_cond_count` | 条件数量 |
 | `xx_cond_<n>_text` / `xx_cond_<n>_ok` | 第 n 条条件进度文本（§ 颜色）/ 是否达成（1/0） |
 | `xx_dujie_state` / `xx_dujie_wave` / `xx_dujie_time` | 渡劫状态（active/idle）/ 波次 / 剩余秒 |
+| `xx_cultivating` / `xx_cultivation_multiplier` | 是否打坐中（1/0）/ 所在灵脉倍率（v1.4.0） |
 | `xx_var_<变量id>` | `sync-arcartx: true` 的玩家变量（如 `xx_var_linggen`） |
 
 ### 2. PAPI 拉取（Aria 脚本）
@@ -56,7 +57,7 @@ Packet.send("xiuxian:query", "realm_list")        // 主动查询（见下）
 | 包 ID | 参数 | 触发时机 |
 |---|---|---|
 | `xiuxian:data` | `[键, JSON]` | 应答 `xiuxian:query`，见上表 |
-| `xiuxian:event` | `[事件名, JSON]` | `breakthrough`{from,to}、`realm_change`{from,to,reason}、`variable_change`{id,old,new}（仅 `sync-arcartx: true` 的变量）、`tribulation_start`{id}、`tribulation_end`{id,result} |
+| `xiuxian:event` | `[事件名, JSON]` | `breakthrough`{from,to}、`realm_change`{from,to,reason}、`variable_change`{id,old,new}（仅 `sync-arcartx: true` 的变量）、`tribulation_start`{id}、`tribulation_end`{id,result}、`cultivation_start`{}、`cultivation_end`{reason} |
 
 在界面里监听这些包播放特效/刷新列表。`realm_change` 在管理员改境界等所有境界变更时都会推（`reason` 为 INIT/ADMIN/BREAKTHROUGH），`breakthrough` 只在玩家突破成功时推。
 

@@ -34,12 +34,14 @@ XiuXianAPI.isInTribulation(player)
 | 事件 | 时机 | 可取消 |
 |---|---|---|
 | `PlayerXiuXianDataLoadEvent` | 玩家数据载入完成 | 否 |
-| `RealmChangeEvent` | 境界变更（INIT/ADMIN/BREAKTHROUGH） | 否 |
+| `RealmChangeEvent` | 境界变更（INIT/ADMIN/BREAKTHROUGH/DEMOTE） | 否 |
 | `RealmBreakthroughPreEvent` | 突破执行前（条件已过、未扣消耗） | **是** |
 | `RealmBreakthroughEvent` | 突破成功后 | 否 |
 | `TribulationStartEvent` | 渡劫发起前 | **是** |
 | `TribulationEndEvent` | 渡劫结束（SUCCESS/FAIL_CHANCE/FAIL_DEATH/FAIL_TIMEOUT/FAIL_OFFLINE/CANCELLED） | 否 |
 | `PlayerVariableChangeEvent` | 玩家变量变更 | 否 |
+| `CultivationStartEvent` | 进入打坐前（v1.4.0） | **是** |
+| `CultivationEndEvent` | 退出打坐（MOVE/DAMAGE/SNEAK_OFF/QUIT/TRIBULATION/RELOAD） | 否 |
 
 示例——渡劫成功发奖励：
 
