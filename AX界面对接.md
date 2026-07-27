@@ -59,7 +59,7 @@ Packet.send("xiuxian:query", "realm_list")        // 主动查询（见下）
 | `xiuxian:data` | `[键, JSON]` | 应答 `xiuxian:query`，见上表 |
 | `xiuxian:event` | `[事件名, JSON]` | `breakthrough`{from,to}、`realm_change`{from,to,reason}、`variable_change`{id,old,new}（仅 `sync-arcartx: true` 的变量）、`tribulation_start`{id}、`tribulation_end`{id,result}、`cultivation_start`{}、`cultivation_end`{reason} |
 
-在界面里监听这些包播放特效/刷新列表。`realm_change` 在管理员改境界等所有境界变更时都会推（`reason` 为 INIT/ADMIN/BREAKTHROUGH），`breakthrough` 只在玩家突破成功时推。
+在界面里监听这些包播放特效/刷新列表。`realm_change` 在管理员改境界等所有境界变更时都会推（`reason` 为 `INIT` / `ADMIN` / `BREAKTHROUGH` / `DEMOTE`），`breakthrough` 只在玩家突破成功时推。
 
 ## 四、注册 UI（UIHandler 方式，可选进阶）
 
