@@ -37,17 +37,28 @@ Placeholder.parseAll("境界 %xiuxian_realm_display% 进度 %xiuxian_progress%%"
 Packet.send("xiuxian:action", "breakthrough")     // 尝试突破（含渡劫流程）
 Packet.send("xiuxian:action", "tribulation")      // 独立发起当前境界天劫
 Packet.send("xiuxian:action", "open_gui", "main") // 打开箱子GUI或其他AX界面
+Packet.send("xiuxian:action", "action_group", "celebrate_breakthrough") // 执行动作组
 Packet.send("xiuxian:query", "realm_list")        // 主动查询（见下）
 ```
+
+### 查询键（`xiuxian:query`，服务端以 `xiuxian:data` 应答）
+
+| 查询键 | 应答 JSON |
+|---|---|
+| `realm_list` | `[{id, display, order, current}, ...]`（全境界链） |
+| `conditions` | `[{index, text, ok}, ...]`（当前境界突破条件逐条进度） |
+| `variables` | `{变量id: 值, ...}`（全部已定义变量的当前值） |
+| `tribulation_info` | `{state, id, wave, total_waves, time}`（渡劫实时状态） |
+| `realm_detail` / `realm_detail <节点id>` | `{found, id, display, major, order, icon, description[], current, next}`；省略 id 查当前境界 |
 
 ## 三、服务端下行包
 
 | 包 ID | 参数 | 触发时机 |
 |---|---|---|
-| `xiuxian:data` | `[键, JSON]` | 应答 `xiuxian:query`；`realm_list` 返回 `[{id,display,order,current},...]` |
-| `xiuxian:event` | `[事件名, JSON]` | `breakthrough`{from,to}、`tribulation_start`{id}、`tribulation_end`{id,result} |
+| `xiuxian:data` | `[键, JSON]` | 应答 `xiuxian:query`，见上表 |
+| `xiuxian:event` | `[事件名, JSON]` | `breakthrough`{from,to}、`realm_change`{from,to,reason}、`variable_change`{id,old,new}（仅 `sync-arcartx: true` 的变量）、`tribulation_start`{id}、`tribulation_end`{id,result} |
 
-在界面里监听这些包播放特效/刷新列表。
+在界面里监听这些包播放特效/刷新列表。`realm_change` 在管理员改境界等所有境界变更时都会推（`reason` 为 INIT/ADMIN/BREAKTHROUGH），`breakthrough` 只在玩家突破成功时推。
 
 ## 四、注册 UI（UIHandler 方式，可选进阶）
 
@@ -57,6 +68,7 @@ Packet.send("xiuxian:query", "realm_list")        // 主动查询（见下）
 id: xiuxian_panel
 ui-file: "AX界面/ui/修仙面板.yml"   # 依次查找：绝对路径 → plugins/XiuXianCore/ → plugins/ArcartX/
 on-open: []                        # UI 打开后执行的动作 DSL（可选）
+on-close: []                       # UI 关闭时执行的动作 DSL（可选）
 packets:                           # UI 内 sendPacket("标识") → 动作映射
   "breakthrough": [ "breakthrough" ]
   "tribulation": [ "tribulation" ]
